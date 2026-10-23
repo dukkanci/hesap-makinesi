@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oyun Atölyesi - Game Workshop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <h1 class="app-title">🎮 Oyun Atölyesi</h1>
+        <span class="app-subtitle">Game Workshop</span>
+      </div>
+      <div class="header-center">
+        <div class="voice-status" id="voiceStatus">
+          <span class="status-indicator" id="statusIndicator"></span>
+          <span class="status-text" id="statusText">Hazır</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-primary" id="voiceToggleBtn" aria-label="Sesli komutları aç/kapat">
+          <svg class="mic-icon" id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+          <svg class="mic-icon muted" id="micIconMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+          <span class="btn-text" id="btnText">Dinlemeye Başla</span>
+        </button>
+        <button class="btn btn-secondary" id="clearChatBtn" aria-label="Sohbeti temizle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Sidebar: Game Tools -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+          <h2 class="section-title">🎯 Oyun Araçları</h2>
+          <div class="tool-grid" id="toolGrid">
+            <button class="tool-card" data-tool="dice">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="10" cy="10" r="1"></circle>
+                <circle cx="14" cy="10" r="1"></circle>
+                <circle cx="10" cy="14" r="1"></circle>
+                <circle cx="14" cy="14" r="1"></circle>
+              </svg>
+              <span class="tool-name">Zar At</span>
+              <span class="tool-desc">D&D, RPG zarları</span>
+            </button>
+            <button class="tool-card" data-tool="character">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span class="tool-name">Karakter Oluştur</span>
+              <span class="tool-desc">Hızlı NPC/PC oluşturucu</span>
+            </button>
+            <button class="tool-card" data-tool="namegen">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+              <span class="tool-name">İsim Üretici</span>
+              <span class="tool-desc">Fantasy, sci-fi isimler</span>
+            </button>
+            <button class="tool-card" data-tool="encounter">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span class="tool-name">Mücadele Tasarım</span>
+              <span class="tool-desc">Dengeli encounter'lar</span>
+            </button>
+            <button class="tool-card" data-tool="loot">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12V7H5v5"></path>
+                <path d="M21 12l-3 3-3-3"></path>
+                <path d="M5 12l3 3-3 3"></path>
+                <path d="M12 12v7"></path>
+              </svg>
+              <span class="tool-name">Loot Tablosu</span>
+              <span class="tool-desc">Rastgele ödüller</span>
+            </button>
+            <button class="tool-card" data-tool="world">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="tool-name">Dünya Oluşturucu</span>
+              <span class="tool-desc">Harita, şehir, bölgesel</span>
+            </button>
+            <button class="tool-card" data-tool="calculator">
+              <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="4" y1="8" x2="20" y2="8"></line>
+                <line x1="8" y1="12" x2="8" y2="12"></line>
+                <line x1="12" y1="12" x2="12" y2="12"></line>
+                <line x1="16" y1="12" x2="16" y2="12"></line>
+                <line x1="8" y1="16" x2="8" y2="16"></line>
+                <line x1="12" y1="16" x2="12" y2="16"></line>
+                <line x1="16" y1="16" x2="16" y2="16"></line>
+              </svg>
+              <span class="tool-name">Hesap Makinesi</span>
+              <span class="tool-desc">Bilimsel ve standart</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h2 class="section-title">🎤 Sesli Komutlar</h2>
+          <div class="voice-commands" id="voiceCommands">
+            <div class="command-item">
+              <kbd>"Zar at"</kbd> <span>- Rastgele zar sonucu</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Karakter oluştur"</kbd> <span>- Yeni NPC/PC</span>
+            </div>
+            <div class="command-item">
+              <kbd>"İsim ver"</kbd> <span>- Fantasy isim önerisi</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Mücadele hazırla"</kbd> <span>- Encounter tasarla</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Loot ver"</kbd> <span>- Rastgele ödül</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Dünya tanıt"</kbd> <span>- Bölge/harita özeti</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Hesap makinesi"</kbd> <span>- Hesap makinesini aç</span>
+            </div>
+            <div class="command-item">
+              <kbd>"Durdur"</kbd> <span>- Sesli dinlemeyi kapat</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Chat/Output Area -->
+      <section class="chat-area" id="chatArea">
+        <div class="chat-header">
+          <h2>💬 Atölye Sohbeti</h2>
+          <div class="chat-controls">
+            <select id="languageSelect" aria-label="Dil seç">
+              <option value="tr-TR">🇹🇷 Türkçe</option>
+              <option value="en-US">🇺🇸 English</option>
+            </select>
+            <button class="btn btn-icon" id="ttsToggleBtn" aria-label="Metin okuma aç/kapat" title="Metin okuma">
+              <svg class="speaker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <svg class="speaker-icon muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <!-- Messages will be added here dynamically -->
+          <div class="message system welcome">
+            <div class="message-avatar">🎮</div>
+            <div class="message-content">
+              <div class="message-header">
+                <span class="message-sender">Oyun Atölyesi</span>
+                <span class="message-time" id="welcomeTime"></span>
+              </div>
+              <div class="message-text">
+                Hoş geldiniz! Ben sizin oyun atölye asistanınızım.
+                <strong>Sesli komutlar</strong> ile zar atabilir, karakter oluşturabilir, isim üretebilir, mücadele tasarlayabilir, loot çekebilir veya dünya oluşturabilirsiniz.
+                <br><br>
+                🎤 <strong>Sağ üstteki "Dinlemeye Başla" butonuna basın</strong> ve konuşmaya başlayın!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <form id="chatForm" class="chat-form">
+            <input
+              type="text"
+              id="chatInput"
+              class="chat-input"
+              placeholder="Komut yazın veya sesli komut kullanın..."
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn-send" aria-label="Gönder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+          <div class="input-hint" id="inputHint">
+            <kbd>Enter</kbd> gönderir • <kbd>Shift+Enter</kbd> yeni satır • Sesli komut için mikrofon butonuna basın
+          </div>
+        </div>
+      </section>
+
+      <!-- Tool Detail Panel (Right Sidebar) -->
+      <aside class="detail-panel" id="detailPanel">
+        <div class="detail-header">
+          <h2 id="detailTitle">Araç Detayları</h2>
+          <button class="btn btn-icon" id="closeDetailBtn" aria-label="Kapat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="detail-content" id="detailContent">
+          <div class="detail-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p>Sol taraftan bir araç seçin veya sesli komut verin</p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Floating Voice Visualizer -->
+    <div class="voice-visualizer" id="voiceVisualizer" style="display: none;">
+      <div class="visualizer-bars">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <p class="visualizer-text" id="visualizerText">Dinleniyor...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:claude.ai)",
+      "WebSearch",
+      "PowerShell(python calculator.py)",
+      "PowerShell(py --version)",
+      "PowerShell(py calculator.py)",
+      "PowerShell(py -m pip install pyinstaller)",
+      "PowerShell(py -m pyinstaller --onefile --noconsole --name \"HesapMakinesi\" calculator.py)",
+      "PowerShell(C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts\\\\pyinstaller.exe --onefile --noconsole --name \"HesapMakinesi\" calculator.py)",
+      "PowerShell(git init)",
+      "PowerShell(wsl --status)",
+      "PowerShell(wsl --install -d Ubuntu)",
+      "Bash(wsl --status)",
+      "Bash(wsl -l -v)",
+      "Bash(wsl --install -d Ubuntu)"
+    ]
+  }
+}

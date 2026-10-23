@@ -55,6 +55,10 @@ jobs:
         run: |
           sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-34" "ndk;25.2.9519653"
 
+      - name: Create old-style tools symlink for p4a compatibility
+        run: |
+          ln -sf cmdline-tools/latest ${{ runner.temp }}/android-sdk/tools
+
       - name: Symlink pre-installed SDK/NDK to p4a expected locations
         run: |
           mkdir -p /home/runner/.buildozer/android/platform

@@ -55,12 +55,13 @@ jobs:
 
       - name: Build APK with Buildozer
         run: |
-          buildozer -v android debug > buildozer.log 2>&1 || true
+          buildozer -v android debug > buildozer.log 2>&1
         env:
           ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
           ANDROID_NDK_ROOT: ${{ runner.temp }}/android-ndk
 
-      - name: Upload buildozer log
+      - name: Upload buildozer log (always)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: buildozer-log

@@ -9,7 +9,7 @@ jobs:
   build:
     name: Build APK
     runs-on: ubuntu-22.04
-    timeout-minutes: 50
+    timeout-minutes: 60
 
     steps:
       - name: Checkout code
@@ -34,7 +34,26 @@ jobs:
             pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
             libtinfo5 cmake libffi-dev libssl-dev automake \
             build-essential ccache \
-            libsqlite3-dev libbz2-dev libreadline-dev liblzma-dev
+            libsqlite3-dev libbz2-dev libreadline-dev liblzma-dev \
+            wget
+
+      - name: Install Android SDK commandline tools
+        run: |
+          mkdir -p ${{ runner.temp }}/android-sdk/cmdline-tools
+          cd ${{ runner.temp }}/android-sdk/cmdline-tools
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q commandlinetools-linux-11076708_latest.zip
+          mv cmdline-tools latest
+          echo "${{ runner.temp }}/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
+          echo "ANDROID_SDK_ROOT=${{ runner.temp }}/android-sdk" >> $GITHUB_ENV
+
+      - name: Accept Android SDK licenses
+        run: |
+          yes | sdkmanager --licenses
+
+      - name: Install required SDK packages
+        run: |
+          sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-34"
 
       - name: Install Buildozer & Cython
         run: |
@@ -52,18 +71,6 @@ jobs:
       - name: Debug buildozer spec
         run: |
           cat buildozer.spec
-
-      - name: Accept Android SDK licenses
-        run: |
-          yes | ${{ runner.temp }}/android-sdk/tools/bin/sdkmanager --sdk_root=${{ runner.temp }}/android-sdk --licenses
-        env:
-          ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
-
-      - name: Install required SDK packages
-        run: |
-          ${{ runner.temp }}/android-sdk/tools/bin/sdkmanager --sdk_root=${{ runner.temp }}/android-sdk "platform-tools" "build-tools;34.0.0" "platforms;android-34"
-        env:
-          ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
 
       - name: Build APK with Buildozer
         run: |

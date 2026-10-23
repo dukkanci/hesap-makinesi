@@ -9,7 +9,7 @@ jobs:
   build:
     name: Build APK
     runs-on: ubuntu-22.04
-    timeout-minutes: 45
+    timeout-minutes: 50
 
     steps:
       - name: Checkout code
@@ -52,6 +52,18 @@ jobs:
       - name: Debug buildozer spec
         run: |
           cat buildozer.spec
+
+      - name: Accept Android SDK licenses
+        run: |
+          yes | ${{ runner.temp }}/android-sdk/tools/bin/sdkmanager --sdk_root=${{ runner.temp }}/android-sdk --licenses
+        env:
+          ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
+
+      - name: Install required SDK packages
+        run: |
+          ${{ runner.temp }}/android-sdk/tools/bin/sdkmanager --sdk_root=${{ runner.temp }}/android-sdk "platform-tools" "build-tools;34.0.0" "platforms;android-34"
+        env:
+          ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
 
       - name: Build APK with Buildozer
         run: |

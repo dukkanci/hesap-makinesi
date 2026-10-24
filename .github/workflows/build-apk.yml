@@ -27,8 +27,9 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/home/user/app \
             -w /home/user/app \
+            -e BUILDOZER_WARN_ON_ROOT=0 \
             kivy/buildozer:latest \
-            bash -c "yes | buildozer android debug"
+            buildozer android debug
 
       - name: List built artifacts
         run: ls -la bin/

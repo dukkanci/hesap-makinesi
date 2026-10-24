@@ -21,7 +21,7 @@ jobs:
           image: kivy/buildozer:latest
           options: -v ${{ github.workspace }}:/home/user/hostcwd -w /home/user/hostcwd
           run: |
-            buildozer -v android debug --non-interactive
+            yes | buildozer -v android debug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4

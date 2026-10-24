@@ -125,7 +125,7 @@ jobs:
           buildozer -v android debug > buildozer.log 2>&1
         env:
           ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-          ANDROID_NDK_ROOT: ${{ env.ANDROID_NDK_HOME }}
+          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/27.3.13750724
           ANDROIDAPI: ${{ env.ANDROID_API }}
           ANDROIDMINAPI: ${{ env.ANDROID_MIN_API }}
 

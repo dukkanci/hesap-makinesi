@@ -19,7 +19,7 @@ jobs:
       ANDROID_BUILD_TOOLS_VERSION: "34.0.0"
       PYTHON_VERSION: "3.11"
       KIVY_VERSION: "2.3.0"
-      P4A_VERSION: "2024.08.01"  # Stable python-for-android version
+      P4A_VERSION: "2024.1.21"  # Stable python-for-android version (last 2024 release)
 
     steps:
       - name: Checkout code

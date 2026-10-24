@@ -31,9 +31,12 @@ version = 1.0.0
 # version.regex = __version__ = ['"](.*)['"]
 # version.filename = %(source.dir)s/main.py
 
+# (str) Main Python file to use as entry point
+main = main.py
+
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy
+requirements = python3==3.11,kivy==2.3.0
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -83,19 +86,19 @@ android.presplash_color = #1a1a1a
 android.permissions = INTERNET
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 34
+android.api = 34
 
 # (int) Minimum API your APK / AAB will support.
-#android.minapi = 21
+android.minapi = 21
 
 # (int) Android SDK version to use
-#android.sdk = 34
+android.sdk = 34
 
 # (str) Android NDK version to use
-#android.ndk = 25b
+android.ndk = 27c
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
-#android.ndk_api = 21
+android.ndk_api = 21
 
 # (bool) Use --private data storage (True) or dir public storage (False)
 #android.private_storage = True
@@ -114,7 +117,7 @@ android.permissions = INTERNET
 #android.skip_update = False
 
 # (bool) If True, then automatically accept SDK license
-#android.accept_sdk_license = False
+android.accept_sdk_license = True
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.kivy.android.PythonActivity
@@ -161,7 +164,7 @@ android.enable_androidx = True
 #android.gradle_dependencies =
 
 # (str) python-for-android branch to use, if not master
-#p4a.branch = master
+p4a.branch = master
 
 # (str) OUYA Console category
 #android.ouya.category = GAME

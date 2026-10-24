@@ -14,7 +14,11 @@
       "PowerShell(wsl --install -d Ubuntu)",
       "Bash(wsl --status)",
       "Bash(wsl -l -v)",
-      "Bash(wsl --install -d Ubuntu)"
+      "Bash(wsl --install -d Ubuntu)",
+      "Read(//mnt/c/Users/Administrator/Desktop/**)",
+      "Bash(rtk git *)",
+      "Bash(rtk ls *)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

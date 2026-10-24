@@ -36,10 +36,10 @@ main = main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3==3.11,hostpython3==3.11,kivy==2.3.0
+requirements = python3==3.11.9,hostpython3==3.11.9,kivy==2.3.0
 
 # (str) Extra parameters to pass to python-for-android
-android.p4a_params = --python-version=3.11
+android.p4a_params = --python-version=3.11.9
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

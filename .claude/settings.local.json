@@ -18,7 +18,28 @@
       "Read(//mnt/c/Users/Administrator/Desktop/**)",
       "Bash(rtk git *)",
       "Bash(rtk ls *)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(docker --version)",
+      "Bash(buildozer --version)",
+      "Bash(rtk pip *)",
+      "Bash(python -m buildozer --version)",
+      "Bash(cp /tmp/test_buildozer/buildozer.spec /c/Users/Administrator/Desktop/ss/test_buildozer.spec && cat /c/Users/Administrator/Desktop/ss/test_buildozer.spec | head -100)",
+      "Bash(/c/Users/Administrator/AppData/Local/Programs/Python/Python312/python.exe /c/Users/Administrator/Desktop/ss/main.py)",
+      "Bash(npm install *)",
+      "Bash(timeout 10 npm start)",
+      "Bash(cd \"C:\\\\Users\\\\Administrator\\\\Desktop\\\\oyun-atolyesi-dev\" && npm install)",
+      "Bash(timeout 5 node server.js)",
+      "Bash(start \"\" \"C:\\\\Users\\\\Administrator\\\\Desktop\\\\Oyun Atölyesi – Claude artifact.lnk\")",
+      "Bash(\"C:\\\\Users\\\\Administrator\\\\AppData\\\\Local\\\\imput\\\\Helium\\\\Application\\\\chrome_proxy.exe\" --profile-directory=Default --app-id=ipbpiobdgmgcdicgofhokodfbdnnnhkc)",
+      "Bash(timeout 10 node server.js)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill /PID 7392 /F)",
+      "Bash(taskkill //PID 7392 //F)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/styles.css)",
+      "Bash(curl -s http://localhost:3000/app.js)",
+      "Bash(rtk read *)"
     ]
   }
 }

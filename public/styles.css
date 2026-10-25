@@ -258,13 +258,25 @@ body {
   transform: scale(1.05);
 }
 
-.mic-icon, .speaker-icon {
+.mic-icon, .speaker-icon, .phone-icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
 
 .btn-text { white-space: nowrap; }
+
+/* Voice Chat Button Active State */
+.btn-secondary.active {
+  background: linear-gradient(135deg, var(--accent-success), #2ea043);
+  border-color: var(--accent-success);
+  color: white;
+}
+
+.btn-secondary.active:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2ea043, #238636);
+  border-color: #2ea043;
+}
 
 /* ========================================
    MAIN LAYOUT
